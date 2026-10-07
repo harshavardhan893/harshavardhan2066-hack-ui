@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Search Results</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <h2>AI<span>Search</span></h2>
+        <a href="../index.html">Home</a>
+    </header>
+    <main class="container">
+        <div class="intro">
+            <p>AI SEARCH</p>
+            <h1>Search with natural language.</h1>
+            <span>Ask a question and receive an organized AI answer.</span>
+        </div>
+        <div class="search-box">
+            <input id="searchInput" type="text" placeholder="Ask something...">
+            <button onclick="search()">Search</button>
+        </div>
+        <section class="answer-card">
+            <div class="answer-icon">✦</div>
+            <div>
+                <h2 id="answerTitle">What is Artificial Intelligence?</h2>
+                <p id="answerText">
+                    Artificial Intelligence is a technology that enables computers
+                    to perform tasks that normally require human intelligence.
+                    Examples include learning, reasoning, language understanding,
+                    image recognition, and decision making.
+                </p>
+            </div>
+        </section>
+        <section class="sources">
+            <h2>Related Results</h2>
+            <article>
+                <h3>AI Fundamentals</h3>
+                <p>Learn the basic concepts behind modern artificial intelligence.</p>
+            </article>
+            <article>
+                <h3>Machine Learning Guide</h3>
+                <p>Understand how machines learn patterns from data.</p>
+            </article>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
