@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent Builder · AgentLab</title><link rel="stylesheet" href="./style.css"></head>
+<body><div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">✦</div><span>AgentLab</span></div>
+  <nav class="nav">
+    <button class="" onclick="go('agent-dashboard')">◈ <span>Dashboard</span></button>
+    <button class="active" onclick="go('agent-builder')">✣ <span>Agent Builder</span></button>
+    <button class="" onclick="go('agent-task-manager')">☷ <span>Tasks</span></button>
+    <button class="" onclick="go('agent-execution-monitor')">◉ <span>Execution</span></button>
+  </nav>
+  <div class="sidebar-foot"><div class="user"><div class="avatar">SD</div><div><strong style="font-size:12px">Workspace</strong><div class="muted small">Personal team</div></div></div></div>
+</aside>
+<main class="main">
+<div class="topbar"><div><div class="eyebrow">AI Agents / Configuration</div><h1>Agent Builder</h1><p class="muted" style="margin-top:6px">Create a reliable agent by defining its behavior, tools, and boundaries.</p></div><div class="top-actions"><button class="btn" onclick="notify('Draft saved')">Save draft</button><button class="btn primary" onclick="deploy()">Deploy Agent</button></div></div>
+<div class="split">
+<div class="card"><div class="section-head"><div><h3>Agent configuration</h3><div class="muted small">Step 1 of 4 · Core behavior</div></div><span class="badge">Draft</span></div>
+<div class="form">
+<div class="field"><label>Agent name</label><input id="agentName" value="Research Copilot" placeholder="e.g. Support Agent"></div>
+<div class="field"><label>Description</label><textarea>Research public information, summarize findings, and prepare concise reports for the team.</textarea></div>
+<div class="grid two">
+<div class="field"><label>Model</label><select><option>Nova Reasoning XL</option><option>Nova Fast</option><option>OpenAI-compatible model</option></select></div>
+<div class="field"><label>Temperature</label><input type="number" value="0.4" min="0" max="1" step=".1"></div>
+</div>
+<div class="field"><label>System instructions</label><textarea id="instructions">You are a careful research agent. Verify claims, cite sources when available, and clearly separate facts from assumptions.</textarea></div>
+<div class="field"><label>Capabilities</label><div class="chips"><button class="chip selected" onclick="chip(this)">Web search</button><button class="chip selected" onclick="chip(this)">Code interpreter</button><button class="chip" onclick="chip(this)">Email</button><button class="chip" onclick="chip(this)">Database</button><button class="chip" onclick="chip(this)">Browser</button></div></div>
+</div></div>
+<div class="card"><div class="section-head"><h3>Configuration</h3><span class="badge success">Ready</span></div>
+<div class="grid">
+<div class="card" style="padding:13px;background:#0d1018"><div style="display:flex;justify-content:space-between"><div><b>Memory</b><div class="muted small">Remember useful context</div></div><button class="toggle on" onclick="toggle(this)"><i></i></button></div></div>
+<div class="card" style="padding:13px;background:#0d1018"><div style="display:flex;justify-content:space-between"><div><b>Human approval</b><div class="muted small">Require approval for risky actions</div></div><button class="toggle on" onclick="toggle(this)"><i></i></button></div></div>
+<div class="card" style="padding:13px;background:#0d1018"><div style="display:flex;justify-content:space-between"><div><b>Knowledge base</b><div class="muted small">Team Research / 482 docs</div></div><button class="btn" onclick="notify('Knowledge picker opened')">Change</button></div></div>
+</div>
+<div class="section"><h3 style="margin-bottom:10px">Agent preview</h3><div class="code">agent.run({
+  goal: "Research a topic",
+  tools: ["web_search", "code"],
+  memory: true,
+  approval: true
+})</div></div>
+</div></div>
+<div class="card section"><div class="section-head"><div><h3>Test your agent</h3><div class="muted small">Run a safe preview before deployment</div></div><button class="btn primary" onclick="testAgent()">▶ Run test</button></div><div id="testOutput" class="code">Waiting for a test run…</div></div>
+<div class="modal-backdrop" id="modal"><div class="modal"><div class="modal-head"><h3>Deploy agent?</h3><button class="btn" onclick="closeModal()">×</button></div><p class="muted" style="font-size:13px;line-height:1.6">This will publish the current configuration and make the agent available to your workspace.</p><div style="display:flex;justify-content:flex-end;gap:8px;margin-top:20px"><button class="btn" onclick="closeModal()">Cancel</button><button class="btn primary" onclick="confirmDeploy()">Deploy</button></div></div></div>
+</main></div>
+<div class="toast" id="toast"></div><script src="./script.js"></script><script></script></body></html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent Dashboard · AgentLab</title><link rel="stylesheet" href="./style.css"></head>
+<body><div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">✦</div><span>AgentLab</span></div>
+  <nav class="nav">
+    <button class="active" onclick="go('agent-dashboard')">◈ <span>Dashboard</span></button>
+    <button class="" onclick="go('agent-builder')">✣ <span>Agent Builder</span></button>
+    <button class="" onclick="go('agent-task-manager')">☷ <span>Tasks</span></button>
+    <button class="" onclick="go('agent-execution-monitor')">◉ <span>Execution</span></button>
+  </nav>
+  <div class="sidebar-foot"><div class="user"><div class="avatar">SD</div><div><strong style="font-size:12px">Workspace</strong><div class="muted small">Personal team</div></div></div></div>
+</aside>
+<main class="main">
+<div class="topbar"><div><div class="eyebrow">AI Agents / Overview</div><h1>Agent Dashboard</h1><p class="muted" style="margin-top:6px">A live command center for your autonomous workforce.</p></div><div class="top-actions"><button class="btn" onclick="notify('Dashboard refreshed')">↻ Refresh</button><button class="btn primary" onclick="go('agent-builder')">+ New Agent</button></div></div>
+<div class="grid stats">
+<div class="card"><div class="muted small">Total agents</div><div class="stat-value">24</div><div class="trend">↑ 3 this month</div></div>
+<div class="card"><div class="muted small">Running now</div><div class="stat-value">08</div><div class="trend">↑ 12% vs yesterday</div></div>
+<div class="card"><div class="muted small">Tasks completed</div><div class="stat-value">12,840</div><div class="trend">↑ 18.4%</div></div>
+<div class="card"><div class="muted small">Success rate</div><div class="stat-value">98.7%</div><div class="trend">↑ 0.8%</div></div>
+</div>
+<div class="grid two section">
+<div class="card"><div class="section-head"><div><h3>Agent performance</h3><div class="muted small">Tasks completed this week</div></div><span class="badge success"><i class="dot"></i> Live</span></div>
+<div class="chart"><div class="col"><i style="height:42%"></i><span>Mon</span></div><div class="col"><i style="height:61%"></i><span>Tue</span></div><div class="col"><i style="height:50%"></i><span>Wed</span></div><div class="col"><i style="height:78%"></i><span>Thu</span></div><div class="col"><i style="height:67%"></i><span>Fri</span></div><div class="col"><i style="height:91%"></i><span>Sat</span></div><div class="col"><i style="height:84%"></i><span>Sun</span></div></div></div>
+<div class="card"><div class="section-head"><h3>System health</h3><span class="badge success">Healthy</span></div><div class="bar-list">
+<div class="bar-row"><span>API</span><div class="bar"><i style="width:96%"></i></div><b>96%</b></div>
+<div class="bar-row"><span>Models</span><div class="bar"><i style="width:91%"></i></div><b>91%</b></div>
+<div class="bar-row"><span>Tools</span><div class="bar"><i style="width:98%"></i></div><b>98%</b></div>
+<div class="bar-row"><span>Memory</span><div class="bar"><i style="width:88%"></i></div><b>88%</b></div>
+</div></div></div>
+<div class="card section"><div class="section-head"><div><h3>Agents</h3><div class="muted small">Your active autonomous workers</div></div><button class="btn" onclick="notify('Agent filters opened')">Filter</button></div>
+<table class="table"><thead><tr><th>Agent</th><th>Purpose</th><th>Status</th><th>Tasks</th><th>Success</th></tr></thead><tbody>
+<tr><td><b>Researcher</b><div class="muted small">agent_01</div></td><td>Market intelligence</td><td><span class="badge success"><i class="dot"></i> Running</span></td><td>2,480</td><td>99.2%</td></tr>
+<tr><td><b>Support Copilot</b><div class="muted small">agent_08</div></td><td>Customer support</td><td><span class="badge success"><i class="dot"></i> Running</span></td><td>5,812</td><td>98.9%</td></tr>
+<tr><td><b>Data Analyst</b><div class="muted small">agent_12</div></td><td>Analytics reports</td><td><span class="badge">Idle</span></td><td>1,920</td><td>97.8%</td></tr>
+<tr><td><b>Content Writer</b><div class="muted small">agent_19</div></td><td>Campaign content</td><td><span class="badge danger"><i class="dot"></i> Error</span></td><td>1,102</td><td>94.1%</td></tr>
+</tbody></table></div>
+<div class="grid two section"><div class="card"><div class="section-head"><h3>Recent activity</h3><button class="btn" onclick="go('agent-execution-monitor')">View logs</button></div><div class="activity">
+<div class="activity-item"><div class="activity-icon">✓</div><div><strong>Researcher completed a task</strong><p>Competitive analysis report generated</p></div><span class="muted small">2m</span></div>
+<div class="activity-item"><div class="activity-icon">↗</div><div><strong>Support Copilot started</strong><p>Processing ticket batch #4812</p></div><span class="muted small">6m</span></div>
+<div class="activity-item"><div class="activity-icon">!</div><div><strong>Content Writer failed</strong><p>Tool timeout · retry available</p></div><span class="muted small">11m</span></div>
+</div></div>
+<div class="card"><div class="section-head"><h3>Quick actions</h3></div><div class="grid"><button class="btn" onclick="go('agent-builder')">✣ Create an agent</button><button class="btn" onclick="go('agent-task-manager')">+ Assign a task</button><button class="btn" onclick="go('agent-execution-monitor')">◉ Inspect executions</button></div></div></div>
+</main></div>
+<div class="toast" id="toast"></div><script src="./script.js"></script><script></script></body></html>
