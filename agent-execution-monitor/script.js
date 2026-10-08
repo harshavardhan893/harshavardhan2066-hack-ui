@@ -1,0 +1,1 @@
+function go(app){window.location.href='../'+app+'/index.html'} function notify(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)} function toggleLogs(){const e=document.getElementById('rawLogs');e.style.display=e.style.display==='none'?'block':'none'}

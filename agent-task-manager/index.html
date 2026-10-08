@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent Task Manager · AgentLab</title><link rel="stylesheet" href="./style.css"></head>
+<body><div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">✦</div><span>AgentLab</span></div>
+  <nav class="nav">
+    <button class="" onclick="go('agent-dashboard')">◈ <span>Dashboard</span></button>
+    <button class="" onclick="go('agent-builder')">✣ <span>Agent Builder</span></button>
+    <button class="active" onclick="go('agent-task-manager')">☷ <span>Tasks</span></button>
+    <button class="" onclick="go('agent-execution-monitor')">◉ <span>Execution</span></button>
+  </nav>
+  <div class="sidebar-foot"><div class="user"><div class="avatar">SD</div><div><strong style="font-size:12px">Workspace</strong><div class="muted small">Personal team</div></div></div></div>
+</aside>
+<main class="main">
+<div class="topbar"><div><div class="eyebrow">AI Agents / Operations</div><h1>Agent Task Manager</h1><p class="muted" style="margin-top:6px">Coordinate tasks, priorities, and multi-step workflows.</p></div><div class="top-actions"><button class="btn" onclick="notify('Queue synced')">↻ Sync</button><button class="btn primary" onclick="openTask()">+ New Task</button></div></div>
+<div class="grid stats">
+<div class="card"><div class="muted small">Queued</div><div class="stat-value">18</div><div class="muted small">Waiting for agents</div></div>
+<div class="card"><div class="muted small">Running</div><div class="stat-value">08</div><div class="trend">3 high priority</div></div>
+<div class="card"><div class="muted small">Completed today</div><div class="stat-value">326</div><div class="trend">↑ 14%</div></div>
+<div class="card"><div class="muted small">Failed</div><div class="stat-value">04</div><div class="muted small">Needs attention</div></div>
+</div>
+<div class="card section"><div class="section-head"><div><h3>Task queue</h3><div class="muted small">Drag-and-drop workflow board concept</div></div><div class="chips"><button class="chip selected" onclick="filterTasks('all',this)">All</button><button class="chip" onclick="filterTasks('high',this)">High priority</button><button class="chip" onclick="filterTasks('failed',this)">Failed</button></div></div>
+<div class="grid three">
+<div><h3 style="margin-bottom:10px">Queued <span class="muted">· 18</span></h3><div class="grid">
+<div class="card task" data-priority="high"><span class="badge warn">High</span><h3 style="margin-top:10px">Analyze Q4 competitors</h3><p class="muted small" style="margin-top:5px">Researcher · Web research</p><div style="margin-top:13px;display:flex;justify-content:space-between"><span class="muted small">Due 11:30</span><span class="avatar">RK</span></div></div>
+<div class="card task" data-priority="normal"><span class="badge">Normal</span><h3 style="margin-top:10px">Summarize support trends</h3><p class="muted small" style="margin-top:5px">Data Analyst · CSV</p><div style="margin-top:13px;display:flex;justify-content:space-between"><span class="muted small">Due 12:15</span><span class="avatar">DA</span></div></div>
+</div></div>
+<div><h3 style="margin-bottom:10px">Running <span class="muted">· 08</span></h3><div class="grid">
+<div class="card task" data-priority="high"><span class="badge success"><i class="dot"></i> Running</span><h3 style="margin-top:10px">Prepare campaign report</h3><p class="muted small" style="margin-top:5px">Content Writer · 4/6 steps</p><div class="bar" style="margin-top:13px"><i style="width:67%"></i></div></div>
+<div class="card task" data-priority="normal"><span class="badge success"><i class="dot"></i> Running</span><h3 style="margin-top:10px">Classify feedback</h3><p class="muted small" style="margin-top:5px">Support Copilot · 78%</p><div class="bar" style="margin-top:13px"><i style="width:78%"></i></div></div>
+</div></div>
+<div><h3 style="margin-bottom:10px">Failed <span class="muted">· 04</span></h3><div class="grid">
+<div class="card task" data-priority="failed"><span class="badge danger">Failed</span><h3 style="margin-top:10px">Sync CRM contacts</h3><p class="muted small" style="margin-top:5px">Sales Agent · API timeout</p><button class="btn" style="margin-top:13px" onclick="retry(this)">↻ Retry task</button></div>
+<div class="card task" data-priority="failed"><span class="badge danger">Failed</span><h3 style="margin-top:10px">Generate invoice draft</h3><p class="muted small" style="margin-top:5px">Finance Agent · Validation</p><button class="btn" style="margin-top:13px" onclick="retry(this)">↻ Retry task</button></div>
+</div></div>
+</div></div>
+<div class="grid two section"><div class="card"><div class="section-head"><h3>Workflow: Campaign launch</h3><span class="badge success">Running</span></div><div class="timeline">
+<div class="step"><div class="step-dot"></div><div><h4>Research audience</h4><p>Researcher · completed 2m ago</p></div></div>
+<div class="step"><div class="step-dot"></div><div><h4>Generate campaign copy</h4><p>Content Writer · running</p></div></div>
+<div class="step"><div class="step-dot"></div><div><h4>Review for policy</h4><p>Safety Agent · waiting</p></div></div>
+<div class="step"><div class="step-dot"></div><div><h4>Publish draft</h4><p>Marketing Agent · waiting</p></div></div>
+</div></div>
+<div class="card"><div class="section-head"><h3>Automation rules</h3><button class="btn" onclick="notify('Rule editor opened')">Manage</button></div><div class="grid">
+<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)"><div><b style="font-size:12px">Auto-retry failures</b><div class="muted small">Up to 3 attempts</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><i></i></button></div>
+<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)"><div><b style="font-size:12px">Escalate high priority</b><div class="muted small">Notify team lead</div></div><button class="toggle on" onclick="this.classList.toggle('on')"><i></i></button></div>
+<div style="display:flex;justify-content:space-between;padding:10px 0"><div><b style="font-size:12px">Pause on tool errors</b><div class="muted small">Require human review</div></div><button class="toggle" onclick="this.classList.toggle('on')"><i></i></button></div>
+</div></div></div>
+<div class="modal-backdrop" id="modal"><div class="modal"><div class="modal-head"><h3>Create task</h3><button class="btn" onclick="closeTask()">×</button></div><div class="form"><div class="field"><label>Task name</label><input id="taskName" placeholder="e.g. Research customer feedback"></div><div class="field"><label>Assign agent</label><select><option>Researcher</option><option>Data Analyst</option><option>Support Copilot</option></select></div><div class="field"><label>Priority</label><select><option>Normal</option><option>High</option><option>Critical</option></select></div><button class="btn primary" onclick="createTask()">Create task</button></div></div></div>
+</main></div>
+<div class="toast" id="toast"></div><script src="./script.js"></script><script></script></body></html>

@@ -1,0 +1,1 @@
+function go(app){window.location.href='../'+app+'/index.html'}

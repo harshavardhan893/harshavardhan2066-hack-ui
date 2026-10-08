@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Execution Monitor · AgentLab</title><link rel="stylesheet" href="./style.css"></head>
+<body><div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">✦</div><span>AgentLab</span></div>
+  <nav class="nav">
+    <button class="" onclick="go('agent-dashboard')">◈ <span>Dashboard</span></button>
+    <button class="" onclick="go('agent-builder')">✣ <span>Agent Builder</span></button>
+    <button class="" onclick="go('agent-task-manager')">☷ <span>Tasks</span></button>
+    <button class="active" onclick="go('agent-execution-monitor')">◉ <span>Execution</span></button>
+  </nav>
+  <div class="sidebar-foot"><div class="user"><div class="avatar">SD</div><div><strong style="font-size:12px">Workspace</strong><div class="muted small">Personal team</div></div></div></div>
+</aside>
+<main class="main">
+<div class="topbar"><div><div class="eyebrow">AI Agents / Observability</div><h1>Execution Monitor</h1><p class="muted" style="margin-top:6px">Inspect the reasoning pipeline, tool calls, and outcomes of every run.</p></div><div class="top-actions"><span class="badge success"><i class="dot"></i> Live stream</span><button class="btn" onclick="notify('Logs exported')">↓ Export</button></div></div>
+<div class="grid stats">
+<div class="card"><div class="muted small">Executions today</div><div class="stat-value">1,284</div><div class="trend">↑ 16.2%</div></div>
+<div class="card"><div class="muted small">Avg. duration</div><div class="stat-value">18.4s</div><div class="muted small">↓ 2.1s this week</div></div>
+<div class="card"><div class="muted small">Tool calls</div><div class="stat-value">8,912</div><div class="muted small">7.2 calls / run</div></div>
+<div class="card"><div class="muted small">Errors</div><div class="stat-value">13</div><div class="trend">↓ 31%</div></div>
+</div>
+<div class="grid two section">
+<div class="card"><div class="section-head"><div><h3>Execution timeline</h3><div class="muted small">Run #exec_8F42A · Researcher</div></div><span class="badge success">Completed</span></div>
+<div class="timeline">
+<div class="step"><div class="step-dot"></div><div><h4>Received task</h4><p>10:41:02.114 · User requested competitor analysis</p></div></div>
+<div class="step"><div class="step-dot"></div><div><h4>Planning</h4><p>10:41:02.821 · Generated 4-step execution plan</p></div></div>
+<div class="step"><div class="step-dot"></div><div><h4>Web search</h4><p>10:41:04.091 · 12 results retrieved · 1.2s</p></div></div>
+<div class="step"><div class="step-dot"></div><div><h4>Tool: code interpreter</h4><p>10:41:09.432 · Compared market data · 4.8s</p></div></div>
+<div class="step"><div class="step-dot"></div><div><h4>Final response</h4><p>10:41:20.550 · Report generated · 842 tokens</p></div></div>
+</div></div>
+<div class="card"><div class="section-head"><h3>Run details</h3><span class="badge">#exec_8F42A</span></div><div class="grid">
+<div style="display:flex;justify-content:space-between"><span class="muted small">Agent</span><b style="font-size:12px">Researcher</b></div>
+<div style="display:flex;justify-content:space-between"><span class="muted small">Model</span><b style="font-size:12px">Nova Reasoning XL</b></div>
+<div style="display:flex;justify-content:space-between"><span class="muted small">Tokens</span><b style="font-size:12px">4,821</b></div>
+<div style="display:flex;justify-content:space-between"><span class="muted small">Duration</span><b style="font-size:12px">18.4s</b></div>
+<div style="display:flex;justify-content:space-between"><span class="muted small">Cost</span><b style="font-size:12px">$0.038</b></div>
+</div><div class="section"><button class="btn" style="width:100%" onclick="notify('Run details copied')">Copy run ID</button></div></div></div>
+<div class="card section"><div class="section-head"><div><h3>Tool calls & logs</h3><div class="muted small">Detailed execution trace</div></div><button class="btn" onclick="toggleLogs()">Expand logs</button></div>
+<table class="table"><thead><tr><th>Time</th><th>Type</th><th>Operation</th><th>Duration</th><th>Status</th></tr></thead><tbody>
+<tr><td>10:41:04</td><td>Tool</td><td><b>web.search</b><div class="muted small">query: AI agent market 2026</div></td><td>1.2s</td><td><span class="badge success">200 OK</span></td></tr>
+<tr><td>10:41:09</td><td>Tool</td><td><b>python.run</b><div class="muted small">compare_market_data()</div></td><td>4.8s</td><td><span class="badge success">Success</span></td></tr>
+<tr><td>10:41:15</td><td>Model</td><td><b>reasoning.generate</b><div class="muted small">context: 18 sources</div></td><td>3.1s</td><td><span class="badge success">Success</span></td></tr>
+<tr><td>10:41:20</td><td>Model</td><td><b>response.generate</b><div class="muted small">842 output tokens</div></td><td>5.2s</td><td><span class="badge success">Complete</span></td></tr>
+</tbody></table></div>
+<div class="card section" id="rawLogs" style="display:none"><h3 style="margin-bottom:12px">Raw execution log</h3><div class="code">[10:41:02.114] RUN START exec_8F42A
+[10:41:02.821] PLAN generated: 4 steps
+[10:41:04.091] TOOL web.search status=200
+[10:41:09.432] TOOL python.run status=success
+[10:41:15.887] MODEL reasoning tokens=3210
+[10:41:20.550] RUN COMPLETE status=success duration=18.436s</div></div>
+</main></div>
+<div class="toast" id="toast"></div><script src="./script.js"></script><script></script></body></html>
